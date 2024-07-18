@@ -3,6 +3,7 @@
 ## Technologies Used
 
 - React
+- Typescript
 - Ant Design
 - React Syntax Highlighter
 
