@@ -115,6 +115,7 @@ const ShareDashboardModal = () => {
       return selectedUser;
     });
     setSelectedUsers(updatedUsers);
+    setFilteredUsers(updatedUsers);
   };
 
   const handleFilterChange = (filter: string) => {
