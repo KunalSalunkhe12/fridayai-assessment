@@ -9,6 +9,7 @@ import {
   Segmented,
   Tag,
   Select,
+  Empty,
 } from "antd";
 import {
   AppstoreOutlined,
@@ -56,6 +57,7 @@ const ShareDashboardModal = () => {
   const [options, setOptions] = useState<AutoCompleteProps["options"]>([]);
   const [sharedFilter, setSharedFilter] = useState("All");
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
+  const [filteredUsers, setFilteredUsers] = useState<User[]>(selectedUsers);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -92,8 +94,9 @@ const ShareDashboardModal = () => {
     );
     if (isUserAlreadySelected) return;
 
-    const updatedUsers = [...selectedUsers, user];
+    const updatedUsers = [...selectedUsers, { ...user, permission: "edit" }];
     setSelectedUsers(updatedUsers);
+    setFilteredUsers(updatedUsers);
   };
 
   const handleRemoveUser = (user: User) => {
@@ -101,6 +104,7 @@ const ShareDashboardModal = () => {
       (selectedUser) => selectedUser.id !== user.id
     );
     setSelectedUsers(updatedUsers);
+    setFilteredUsers(updatedUsers);
   };
 
   const handleUserPermissions = (user: User, permission: string) => {
@@ -111,6 +115,22 @@ const ShareDashboardModal = () => {
       return selectedUser;
     });
     setSelectedUsers(updatedUsers);
+  };
+
+  const handleFilterChange = (filter: string) => {
+    setSharedFilter(filter);
+
+    let filteredUsers = selectedUsers;
+    if (filter === "Editors") {
+      filteredUsers = selectedUsers.filter(
+        (user) => user.permission === "edit"
+      );
+    } else if (filter === "Viewers") {
+      filteredUsers = selectedUsers.filter(
+        (user) => user.permission === "view"
+      );
+    }
+    setFilteredUsers(filteredUsers);
   };
 
   return (
@@ -164,33 +184,37 @@ const ShareDashboardModal = () => {
               <Segmented
                 options={sharedFilters}
                 value={sharedFilter}
-                onChange={setSharedFilter}
+                onChange={handleFilterChange}
                 size="middle"
               />
             </div>
 
             <div className="tag-container custom-scrollbar">
-              {selectedUsers.map((user) => {
-                return (
-                  <div className="tag-item" key={user.id}>
-                    <Tag
-                      closable
-                      onClose={() => handleRemoveUser(user)}
-                      className="user-tag"
-                    >
-                      <Avatar size={20} src={user.avatarUrl} />
-                      <span>{user.name}</span>
-                    </Tag>
-                    <Select
-                      variant="borderless"
-                      defaultValue="edit"
-                      value={user.permission}
-                      options={sharedPermissions}
-                      onChange={(value) => handleUserPermissions(user, value)}
-                    />
-                  </div>
-                );
-              })}
+              {filteredUsers.length > 0 ? (
+                filteredUsers.map((user) => {
+                  return (
+                    <div className="tag-item" key={user.id}>
+                      <Tag
+                        closable
+                        onClose={() => handleRemoveUser(user)}
+                        className="user-tag"
+                      >
+                        <Avatar size={20} src={user.avatarUrl} />
+                        <span>{user.name}</span>
+                      </Tag>
+                      <Select
+                        variant="borderless"
+                        defaultValue="edit"
+                        value={user.permission}
+                        options={sharedPermissions}
+                        onChange={(value) => handleUserPermissions(user, value)}
+                      />
+                    </div>
+                  );
+                })
+              ) : (
+                <Empty description="No users found" />
+              )}
             </div>
           </>
         )}

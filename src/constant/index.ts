@@ -61,7 +61,7 @@ export const users = [
   },
 ];
 
-export const sharedFilters = ["All", "Editers", "Viewers"];
+export const sharedFilters = ["All", "Editors", "Viewers"];
 
 export const sharedPermissions = [
   {
