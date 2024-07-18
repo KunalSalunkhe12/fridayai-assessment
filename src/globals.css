@@ -1,0 +1,248 @@
+body {
+  font-family: proxima-nova, sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+:root {
+  --primary-color: #8c71f9;
+  --secondary-color: #f0f2f5;
+  --tertiary-color: #809fb8;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background: var(--secondary-color);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/******************* Select Dashboard Modal *********************/
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin-top: 10px;
+}
+
+.select-dashboard {
+  margin-top: 24px;
+}
+
+.search-dashboard-input {
+  padding: 8px 10px;
+  color: var(--tertiary-color);
+}
+
+.select-dashboard-menu * {
+  color: var(--tertiary-color);
+}
+
+.select-dashboard-menu .ant-menu-submenu-title {
+  padding-left: 0 !important;
+}
+
+.select-dashboard-menu .ant-menu-item:hover,
+.select-dashboard-menu .ant-menu-item-selected {
+  background-color: var(--primary-color) !important;
+}
+
+.select-dashboard-menu .ant-menu-item:hover * {
+  color: #fff !important;
+}
+
+.select-dashboard-menu .ant-menu-item-selected * {
+  color: #fff !important;
+}
+
+.no-dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  color: var(--tertiary-color);
+}
+
+/**************** Share Dashboard Modal ***********************/
+
+.share-dashboard-modal p {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.share-dashboard-modal .share-dashboard-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.share-dashboard-modal .audience-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.share-dashboard-modal .audience-container .appstore-icon {
+  color: var(--primary-color);
+}
+
+.share-dashboard-modal .copy-link-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--secondary-color);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 20px 0;
+}
+
+.share-dashboard-modal .copy-link-container p:first-child {
+  font-weight: 700;
+}
+
+.share-dashboard-modal .share-dashboard-autocomplete {
+  width: 100%;
+}
+
+.share-dashboard-modal .share-dashboard-input {
+  padding: 14px 16px;
+  border-radius: 12px;
+}
+
+.autocomplete-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.autocomplete-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.autocomplete-item .autocomplete-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.autocomplete-item .autocomplete-name span:first-child {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.shared-filters-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.shared-filters-container .ant-segmented-item {
+  margin-bottom: 0;
+}
+
+.tag-container {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  overflow-y: scroll;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tag-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-tag {
+  display: flex;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 16px;
+  background: transparent;
+  font-weight: 700;
+}
+
+/************************************ Active Employees Chart **************************/
+
+.active-employees-container {
+  color: var(--tertiary-color);
+  width: 425px;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--secondary-color);
+}
+
+.icons-container {
+  display: flex;
+  gap: 5px;
+}
+
+.icons-container img {
+  cursor: pointer;
+}
+
+.count-employee-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.count-employee-container span {
+  color: var(--tertiary-color);
+}
+
+.count-employee-container div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sql-heading {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--tertiary-color);
+}
+
+.select-dashboard-dropdown {
+  width: 400px;
+}
+
+.verification-btn {
+  color: var(--tertiary-color);
+}
+
+@media screen and (max-width: 668px) {
+  .active-employees-container {
+    width: 100%;
+  }
+  .select-dashboard-dropdown {
+    width: 100%;
+  }
+}
